@@ -53,3 +53,38 @@ print_m(matrix)
 
 res = instance.spiralOrder(matrix)
 print(res)
+
+
+class Solution:
+    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
+        rows, cols = len(matrix), len(matrix[0])
+        x, y, dx, dy = 0, 0, 1, 0
+        res = []
+
+        for _ in range(rows * cols):
+            res.append(matrix[y][x])
+            matrix[y][x] = "."
+
+            if not 0 <= x + dx < cols or not 0 <= y + dy < rows or matrix[y + dy][x + dx] == ".":
+                dx, dy = -dy, dx
+
+            x += dx
+            y += dy
+
+        return res
+
+
+
+def print_m(matrix):
+    for mass in matrix:
+        for num in mass:
+            print(f" {num} ", end="")
+        print()
+    print()
+
+instance = Solution()
+matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20],[21,22,23,24]]
+print_m(matrix)
+
+res = instance.spiralOrder(matrix)
+print(res)
