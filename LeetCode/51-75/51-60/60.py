@@ -120,3 +120,27 @@ for i in range(1, 8):
         break
 
 print('end')
+
+
+class Solution3:
+    def getPermutation(self, n: int, k: int) -> str:
+        ans = ""
+        fact = 1
+        numbers = []
+        for i in range(1, n):
+            fact *= i
+            numbers.append(i)
+        numbers.append(n)
+        k -= 1
+        while True:
+            ans += str(numbers[k // fact])
+            numbers.pop(k // fact)
+            if len(numbers) == 0: break
+            k %= fact
+            fact //= len(numbers)
+        return ans
+
+instance3 = Solution3()
+res = instance3.getPermutation(4, 5)
+print(res)
+
